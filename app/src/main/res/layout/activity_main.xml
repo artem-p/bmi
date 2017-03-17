@@ -13,11 +13,54 @@
     >
 
     <TextView
+        android:id="@+id/tvHeightLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/height_label"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/colorWhite"
         />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etHeight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tvHeightLabel"
+        android:inputType="numberDecimal"
+        android:gravity="center"
+        android:hint="@string/height_hint"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="@color/colorLightGray"
+        android:textColor="@color/colorWhite"
+        />
+
+    <TextView
+        android:id="@+id/tvWeightLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weight_label"
+        android:layout_below="@id/etHeight"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:paddingTop="@dimen/vertical_margin"
+        android:textColor="@color/colorWhite"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etWeight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tvWeightLabel"
+        android:inputType="numberDecimal"
+        android:gravity="center"
+        android:hint="@string/height_hint"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="@color/colorLightGray"
+        android:textColor="@color/colorWhite"
+        />
+
 
 </RelativeLayout>
