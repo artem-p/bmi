@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/height_label"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/primaryText"
         />
 
     <EditText
@@ -32,8 +32,8 @@
         android:gravity="center"
         android:hint="@string/height_hint"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColorHint="@color/colorLightGray"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/secondaryText"
+        android:textColorHint="@color/hint"
         />
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_below="@id/etHeight"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:paddingTop="@dimen/vertical_margin"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/primaryText"
         />
 
     <EditText
@@ -58,8 +58,8 @@
         android:gravity="center"
         android:hint="@string/height_hint"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColorHint="@color/colorLightGray"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/secondaryText"
+        android:textColorHint="@color/hint"
         />
 
 
