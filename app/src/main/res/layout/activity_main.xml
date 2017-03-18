@@ -62,5 +62,15 @@
         android:textColorHint="@color/hint"
         />
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvBmi"
+            android:layout_below="@id/etWeight"
+            android:text="@string/bmi"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:gravity="center"
+            android:textColor="@color/primaryText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
 </RelativeLayout>
