@@ -21,5 +21,12 @@ public class PersonTest {
     public void bmi_normal() {
         Person person = new Person(178, 73);
         assertEquals(person.getBmi(), "23.0");
+
+        person = new Person(200, 100);
+        assertEquals(person.getBmi(), "25.0");
+
+        person = new Person(185, 77);
+        assertEquals(person.getBmi(), "22.5");
+
     }
 }
