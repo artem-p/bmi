@@ -12,14 +12,14 @@ import java.util.Locale;
 
 public class Person {
     private int height;
-    private long weight;
+    private float weight;
 
     /**
      * @param height height in cm
      * @param weight weight in kg
      */
 
-    public Person(int height, long weight) {
+    public Person(int height, float weight) {
         this.height = height;
         this.weight = weight;
     }
