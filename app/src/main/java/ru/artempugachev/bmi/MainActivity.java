@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 CONVERSION_ERROR_TOAST.show();
                 return;
             }
-        } else {
-            // todo empty input
         }
 
         Person person = new Person(height, weight);
