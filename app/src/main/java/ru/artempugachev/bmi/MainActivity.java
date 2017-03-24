@@ -1,5 +1,7 @@
 package ru.artempugachev.bmi;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mHeightEditText;
     private EditText mWeihtEditText;
     private TextView mBmiTextView;
+    private SharedPreferences mSharedPreferences;
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private  Toast CONVERSION_ERROR_TOAST;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         mHeightEditText = (EditText) findViewById(R.id.etHeight);
         mWeihtEditText = (EditText) findViewById(R.id.etWeight);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
+
+        mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
 
         setListeners();
         updateBmi();
