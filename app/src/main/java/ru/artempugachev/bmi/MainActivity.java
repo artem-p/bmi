@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         mBmiTextView.setText(getString(R.string.bmi, bmi));
 
         // save to preferences
+        // todo move to onStop
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(getString(R.string.pref_cur_height), height);
         editor.putFloat(getString(R.string.pref_cur_weight), weight);
