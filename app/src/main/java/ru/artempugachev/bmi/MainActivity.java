@@ -63,14 +63,30 @@ public class MainActivity extends AppCompatActivity {
 
         mBmiTextView.setText(getString(R.string.bmi, bmi));
 
-        // save to preferences
-        // todo move to onStop
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        saveToPreferences();
+    }
+
+
+    /**
+     * Save current values to preferences
+     * */
+    private void saveToPreferences() {
+        // todo add string key for bmi
+
+        //  todo get text from controls
+
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(getString(R.string.pref_cur_height), height);
         editor.putFloat(getString(R.string.pref_cur_weight), weight);
         editor.apply();
-    }
 
+    }
 
     private void setListeners() {
         mHeightEditText.addTextChangedListener(new HeightWeightTextWatcher());
