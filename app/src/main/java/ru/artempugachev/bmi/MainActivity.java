@@ -65,9 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
-
-        saveToPreferences(getPreferences(Context.MODE_PRIVATE);
+        saveToPreferences(getPreferences(Context.MODE_PRIVATE));
     }
 
 
