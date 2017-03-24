@@ -6,4 +6,6 @@
     <string name="weight_hint">Enter weight</string>
     <string name="bmi">BMI = %s</string>
     <string name="conversion_error">Conversion error</string>
+    <string name="pref_cur_height">pref_cur_height</string>
+    <string name="pref_cur_weight">pref_cur_weight</string>
 </resources>
