@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText mHeightEditText;
     private EditText mWeihtEditText;
     private TextView mBmiTextView;
-    private SharedPreferences mSharedPreferences;
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private  Toast CONVERSION_ERROR_TOAST;
@@ -29,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         mHeightEditText = (EditText) findViewById(R.id.etHeight);
         mWeihtEditText = (EditText) findViewById(R.id.etWeight);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
-
-        mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
 
         setListeners();
         updateBmi();
@@ -73,15 +70,18 @@ public class MainActivity extends AppCompatActivity {
         String sWeight = String.valueOf(mWeihtEditText.getText());
         String sBmi = String.valueOf(mBmiTextView.getText());
 
-        saveToPreferences(sHeight, sWeight, sBmi);
+        saveToPreferences(getPreferences(Context.MODE_PRIVATE),
+                sHeight, sWeight, sBmi);
     }
 
 
     /**
      * Save current values to preferences
      * */
-    private void saveToPreferences(String height, String weight, String bmi) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
+    public void saveToPreferences(SharedPreferences sharedPreferences,
+                                  String height, String weight, String bmi) {
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.pref_cur_height), height);
         editor.putString(getString(R.string.pref_cur_weight), weight);
         editor.putString(getString(R.string.pref_cur_bmi), bmi);
