@@ -66,25 +66,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        String sHeight = String.valueOf(mHeightEditText.getText());
-        String sWeight = String.valueOf(mWeihtEditText.getText());
-        String sBmi = String.valueOf(mBmiTextView.getText());
 
-        saveToPreferences(getPreferences(Context.MODE_PRIVATE),
-                sHeight, sWeight, sBmi);
+        saveToPreferences(getPreferences(Context.MODE_PRIVATE);
     }
 
 
     /**
      * Save current values to preferences
      * */
-    public void saveToPreferences(SharedPreferences sharedPreferences,
-                                  String height, String weight, String bmi) {
+    public void saveToPreferences(SharedPreferences sharedPreferences) {
+        String sHeight = String.valueOf(mHeightEditText.getText());
+        String sWeight = String.valueOf(mWeihtEditText.getText());
+        String sBmi = String.valueOf(mBmiTextView.getText());
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(getString(R.string.pref_cur_height), height);
-        editor.putString(getString(R.string.pref_cur_weight), weight);
-        editor.putString(getString(R.string.pref_cur_bmi), bmi);
+        editor.putString(getString(R.string.pref_cur_height), sHeight);
+        editor.putString(getString(R.string.pref_cur_weight), sWeight);
+        editor.putString(getString(R.string.pref_cur_bmi), sBmi);
         editor.apply();
     }
 
