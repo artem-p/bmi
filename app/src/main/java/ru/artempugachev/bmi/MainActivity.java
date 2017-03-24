@@ -77,15 +77,15 @@ public class MainActivity extends AppCompatActivity {
      * Save current values to preferences
      * */
     private void saveToPreferences() {
-        // todo add string key for bmi
-
-        //  todo get text from controls
+        String sHeight = String.valueOf(mHeightEditText.getText());
+        String sWeight = String.valueOf(mWeihtEditText.getText());
+        String sBmi = String.valueOf(mBmiTextView.getText());
 
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putInt(getString(R.string.pref_cur_height), height);
-        editor.putFloat(getString(R.string.pref_cur_weight), weight);
+        editor.putString(getString(R.string.pref_cur_height), sHeight);
+        editor.putString(getString(R.string.pref_cur_weight), sWeight);
+        editor.putString(getString(R.string.pref_cur_bmi), sBmi);
         editor.apply();
-
     }
 
     private void setListeners() {
