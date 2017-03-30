@@ -46,4 +46,10 @@ public class InputTest {
         onView(withId(R.id.etHeight)).check(matches(withText("1785")));
     }
 
+    @Test
+    public void check_bmi() {
+        onView(withId(R.id.etHeight)).perform(typeText("178"));
+        onView(withId(R.id.etWeight)).perform(typeText("73"));
+        onView(withId(R.id.tvBmi)).check(matches(withText("BMI = 23.0")));
+    }
 }
