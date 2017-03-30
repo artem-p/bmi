@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         setListeners();
         updateBmi();
+
+        // todo check tests
+//        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
     }
 
     /**
@@ -60,19 +63,21 @@ public class MainActivity extends AppCompatActivity {
 
         mBmiTextView.setText(getString(R.string.bmi, bmi));
 
+        // save plain bmi value as tag to use it when saving vals to prefs
+        mBmiTextView.setTag(bmi);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        saveToPreferences(getPreferences(Context.MODE_PRIVATE));
+        saveCurrentValsToPreferences(getPreferences(Context.MODE_PRIVATE));
     }
 
 
     /**
      * Save current values to preferences
      * */
-    public void saveToPreferences(SharedPreferences sharedPreferences) {
+    public void saveCurrentValsToPreferences(SharedPreferences sharedPreferences) {
         String sHeight = String.valueOf(mHeightEditText.getText());
         String sWeight = String.valueOf(mWeihtEditText.getText());
         String sBmi = String.valueOf(mBmiTextView.getText());
@@ -82,6 +87,28 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(getString(R.string.pref_cur_weight), sWeight);
         editor.putString(getString(R.string.pref_cur_bmi), sBmi);
         editor.apply();
+    }
+
+
+    /**
+     * get current vals from preferences and display them
+     * */
+    private void loadCurrentValsFromPreferences(SharedPreferences sharedPreferences) {
+        String height = sharedPreferences.getString(getString(R.string.pref_cur_height), "");
+        String weight = sharedPreferences.getString(getString(R.string.pref_cur_weight), "");
+        String bmi = sharedPreferences.getString(getString(R.string.pref_cur_bmi), "");
+
+        if (!height.equals("")) {
+            mHeightEditText.setText(height);
+        }
+
+        if (!weight.equals("")) {
+            mWeihtEditText.setText(weight);
+        }
+
+        if (!weight.equals("")) {
+            mBmiTextView.setText(getString(R.string.bmi, bmi));
+        }
     }
 
     private void setListeners() {

@@ -12,7 +12,9 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.is;
 
 /**
  * Espresso test for user input
@@ -51,5 +53,6 @@ public class InputTest {
         onView(withId(R.id.etHeight)).perform(typeText("178"));
         onView(withId(R.id.etWeight)).perform(typeText("73"));
         onView(withId(R.id.tvBmi)).check(matches(withText("BMI = 23.0")));
+        onView(withTagValue(is((Object) "23.0")));
     }
 }
