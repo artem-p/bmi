@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public void saveCurrentValsToPreferences(SharedPreferences sharedPreferences) {
         String sHeight = String.valueOf(mHeightEditText.getText());
         String sWeight = String.valueOf(mWeihtEditText.getText());
-        String sBmi = String.valueOf(mBmiTextView.getText());
+        String sBmi = String.valueOf(mBmiTextView.getTag());
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.pref_cur_height), sHeight);

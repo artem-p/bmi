@@ -43,7 +43,7 @@ public class CurrentValsTest {
         // save values to preferences
         MainActivity mainActivity = mActivityRule.getActivity();
         SharedPreferences preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
-        mainActivity.saveToPreferences(preferences);
+        mainActivity.saveCurrentValsToPreferences(preferences);
 
         // check values was saved
         String height = preferences.getString(mainActivity.getString(R.string.pref_cur_height), "");
@@ -52,6 +52,6 @@ public class CurrentValsTest {
 
         assertEquals(height, "178");
         assertEquals(weight, "73");
-        assertEquals(bmi, "BMI = 23.0");
+        assertEquals(bmi, "23.0");
     }
 }
