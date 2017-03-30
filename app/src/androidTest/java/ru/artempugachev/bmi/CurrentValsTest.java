@@ -43,7 +43,7 @@ public class CurrentValsTest {
      * Test saving current input vals to preferences
      * */
     @Test
-    public void save_cur_vals_to_prefs() {
+    public void saveLoadCurValsToPrefs() {
         // input values
         onView(withId(R.id.etHeight)).perform(typeText("178"));
         onView(withId(R.id.etWeight)).perform(typeText("72"));
@@ -53,20 +53,14 @@ public class CurrentValsTest {
         MainActivity mainActivity = mActivityRule.getActivity();
         SharedPreferences preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
         mainActivity.saveCurrentValsToPreferences(preferences);
-    }
 
-
-    @Test
-    public void load_cur_vals_from_prefs() {
-        // check values was saved
-        MainActivity mainActivity = mActivityRule.getActivity();
-        SharedPreferences preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
         String height = preferences.getString(mainActivity.getString(R.string.pref_cur_height), "");
         String weight = preferences.getString(mainActivity.getString(R.string.pref_cur_weight), "");
         String bmi = preferences.getString(mainActivity.getString(R.string.pref_cur_bmi), "");
 
-        assertEquals(height, "178");
-        assertEquals(weight, "72");
-        assertEquals(bmi, "22.7");
+        assertEquals("178", height);
+        assertEquals("72", weight);
+        assertEquals("22.7", bmi);
     }
+
 }
