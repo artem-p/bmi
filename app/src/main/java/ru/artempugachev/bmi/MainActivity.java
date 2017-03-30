@@ -40,6 +40,19 @@ public class MainActivity extends AppCompatActivity {
      * Compute Bmi and display it
      * */
     private void updateBmi() {
+        Person person = buildPersonFromUi();
+        if (person != null) {
+            String bmi = person.getBmi();
+            mBmiTextView.setText(getString(R.string.bmi, bmi));
+            mBmiTextView.setTag(bmi);   // save plain bmi value as tag to use it when saving vals to prefs
+        }
+    }
+
+
+    /**
+     * Get values from input fields and create Person object
+     * */
+    private Person buildPersonFromUi() {
         int height = 0;
         float weight = 0;
 
@@ -52,18 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 weight = Float.parseFloat(sWeight);
             } catch (Exception e) {
                 CONVERSION_ERROR_TOAST.show();
-                return;
+                return null;
             }
         }
 
-        Person person = new Person(height, weight);
-
-        String bmi = person.getBmi();
-
-        mBmiTextView.setText(getString(R.string.bmi, bmi));
-
-        // save plain bmi value as tag to use it when saving vals to prefs
-        mBmiTextView.setTag(bmi);
+        return new Person(height, weight);
     }
 
     @Override
