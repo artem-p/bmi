@@ -46,21 +46,27 @@ public class CurrentValsTest {
     public void save_cur_vals_to_prefs() {
         // input values
         onView(withId(R.id.etHeight)).perform(typeText("178"));
-        onView(withId(R.id.etWeight)).perform(typeText("73"));
-        onView(withId(R.id.tvBmi)).check(matches(withText("BMI = 23.0")));
+        onView(withId(R.id.etWeight)).perform(typeText("72"));
+        onView(withId(R.id.tvBmi)).check(matches(withText("BMI = 22.7")));
 
         // save values to preferences
         MainActivity mainActivity = mActivityRule.getActivity();
         SharedPreferences preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
         mainActivity.saveCurrentValsToPreferences(preferences);
+    }
 
+
+    @Test
+    public void load_cur_vals_from_prefs() {
         // check values was saved
+        MainActivity mainActivity = mActivityRule.getActivity();
+        SharedPreferences preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
         String height = preferences.getString(mainActivity.getString(R.string.pref_cur_height), "");
         String weight = preferences.getString(mainActivity.getString(R.string.pref_cur_weight), "");
         String bmi = preferences.getString(mainActivity.getString(R.string.pref_cur_bmi), "");
 
         assertEquals(height, "178");
-        assertEquals(weight, "73");
-        assertEquals(bmi, "23.0");
+        assertEquals(weight, "72");
+        assertEquals(bmi, "22.7");
     }
 }
