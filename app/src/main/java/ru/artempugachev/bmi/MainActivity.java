@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setListeners();
         updateBmi();
 
-        // todo check tests
-//        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
+        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
     }
 
     /**
