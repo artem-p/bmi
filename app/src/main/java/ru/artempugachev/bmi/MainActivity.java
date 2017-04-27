@@ -25,14 +25,18 @@ public class MainActivity extends AppCompatActivity {
         CONVERSION_ERROR_TOAST = Toast.makeText(MainActivity.this,
                 R.string.conversion_error, Toast.LENGTH_SHORT);
 
-        mHeightEditText = (EditText) findViewById(R.id.etHeight);
-        mWeihtEditText = (EditText) findViewById(R.id.etWeight);
-        mBmiTextView = (TextView) findViewById(R.id.tvBmi);
 
         setListeners();
         updateBmi();
 
         loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
+    }
+
+
+    private void setUpViews() {
+        mHeightEditText = (EditText) findViewById(R.id.etHeight);
+        mWeihtEditText = (EditText) findViewById(R.id.etWeight);
+        mBmiTextView = (TextView) findViewById(R.id.tvBmi);
     }
 
     /**
