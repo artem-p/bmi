@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 R.string.conversion_error, Toast.LENGTH_SHORT);
 
 
+        setUpViews();
         setListeners();
         updateBmi();
 
@@ -34,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setUpViews() {
-        mHeightEditText = (EditText) findViewById(R.id.etHeight);
         mWeihtEditText = (EditText) findViewById(R.id.etWeight);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
+        mHeightEditText = (EditText) findViewById(R.id.etHeight);
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View metricHeightEditText = inflater.inflate(R.layout.height_input_metric, null);
+        FrameLayout heightContainer = (FrameLayout) findViewById(R.id.heightContainer);
+        heightContainer.addView(metricHeightEditText);
+
+
     }
 
     /**
