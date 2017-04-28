@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mHeightMetricEditText;
-    private EditText mHeightFeetEditText;
-    private EditText mHeightInchesEditText;
+    private EditText mHeightImperialFeetEditText;
+    private EditText mHeightImperialInchesEditText;
     private EditText mWeihtEditText;
     private TextView mBmiTextView;
 
@@ -42,24 +42,37 @@ public class MainActivity extends AppCompatActivity {
     private void setUpViews() {
         mWeihtEditText = (EditText) findViewById(R.id.etWeight);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
-
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View metricHeightInput = inflater.inflate(R.layout.height_input_metric, null);
-        View imperialHeightInput = inflater.inflate(R.layout.height_input_imperial, null);
-
-        boolean isMetricUnits = false;
-        FrameLayout heightContainer = (FrameLayout) findViewById(R.id.heightContainer);
-        if (isMetricUnits) {
-            heightContainer.addView(metricHeightInput);
-        } else {
-            heightContainer.addView(imperialHeightInput);
-        }
-
         mHeightMetricEditText = (EditText) findViewById(R.id.etHeightMetric);
-        mHeightFeetEditText = (EditText) findViewById(R.id.etHeightImperialFeet);
-        mHeightInchesEditText = (EditText) findViewById(R.id.etHeightImperialInches);
+        mHeightImperialFeetEditText = (EditText) findViewById(R.id.etHeightImperialFeet);
+        mHeightImperialInchesEditText = (EditText) findViewById(R.id.etHeightImperialInches);
 
+        createHeightWeightInputs(true);
     }
+
+
+    /**
+     * Create views for height and weight inputs
+     * We use different views for metric and imperial input
+     * */
+    private void createHeightWeightInputs(boolean isMetric) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View heightInputMetric = inflater.inflate(R.layout.height_input_metric, null);
+        View heightInputImperial = inflater.inflate(R.layout.height_input_imperial, null);
+        View weightInputMetric = inflater.inflate(R.layout.weight_input_metric, null);
+        View weightInputImperial = inflater.inflate(R.layout.weight_input_imperial, null);
+
+        FrameLayout heightInputContainer = (FrameLayout) findViewById(R.id.heightInputContainer);
+        FrameLayout weightInputContainer = (FrameLayout) findViewById(R.id.weightInputContainer);
+
+        if (isMetric) {
+            heightInputContainer.addView(heightInputMetric);
+            weightInputContainer.addView(weightInputMetric);
+        } else {
+            heightInputContainer.addView(heightInputImperial);
+            weightInputContainer.addView(weightInputImperial);
+        }
+    }
+
 
     /**
      * Get height and weight values from inputs.

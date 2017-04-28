@@ -24,7 +24,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/heightContainer"
+        android:id="@+id/heightInputContainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/tvHeightLabel"
@@ -36,36 +36,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/weight_label"
-        android:layout_below="@id/heightContainer"
+        android:layout_below="@id/heightInputContainer"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:paddingTop="@dimen/vertical_margin"
         android:textColor="@color/primaryText"
         />
 
-    <EditText
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etWeight"
+        android:id="@+id/weightInputContainer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/tvWeightLabel"
-        android:inputType="numberDecimal"
-        android:gravity="center"
-        android:hint="@string/height_hint_metric"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/secondaryText"
-        android:textColorHint="@color/hint"
-        />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvBmi"
-            android:layout_below="@id/etWeight"
-            android:text="@string/bmi"
-            android:layout_marginTop="@dimen/vertical_margin"
-            android:gravity="center"
-            android:textColor="@color/primaryText"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+        >
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvBmi"
+        android:layout_below="@id/weightInputContainer"
+        android:text="@string/bmi"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:gravity="center"
+        android:textColor="@color/primaryText"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 </RelativeLayout>
