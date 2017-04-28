@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText mHeightEditText;
+    private EditText mHeightMetricEditText;
+    private EditText mHeightFeetEditText;
+    private EditText mHeightInchesEditText;
     private EditText mWeihtEditText;
     private TextView mBmiTextView;
 
@@ -30,23 +32,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         setUpViews();
-        setListeners();
-        updateBmi();
+//        setListeners();
+//        updateBmi();
 
-        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
+//        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
     }
 
 
     private void setUpViews() {
         mWeihtEditText = (EditText) findViewById(R.id.etWeight);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
-        mHeightEditText = (EditText) findViewById(R.id.etHeight);
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View metricHeightEditText = inflater.inflate(R.layout.height_input_metric, null);
-        FrameLayout heightContainer = (FrameLayout) findViewById(R.id.heightContainer);
-        heightContainer.addView(metricHeightEditText);
+        View metricHeightInput = inflater.inflate(R.layout.height_input_metric, null);
+        View imperialHeightInput = inflater.inflate(R.layout.height_input_imperial, null);
 
+        boolean isMetricUnits = false;
+        FrameLayout heightContainer = (FrameLayout) findViewById(R.id.heightContainer);
+        if (isMetricUnits) {
+            heightContainer.addView(metricHeightInput);
+        } else {
+            heightContainer.addView(imperialHeightInput);
+        }
+
+        mHeightMetricEditText = (EditText) findViewById(R.id.etHeightMetric);
+        mHeightFeetEditText = (EditText) findViewById(R.id.etHeightImperialFeet);
+        mHeightInchesEditText = (EditText) findViewById(R.id.etHeightImperialInches);
 
     }
 
@@ -71,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         int height = 0;
         float weight = 0;
 
-        String sHeight = String.valueOf(mHeightEditText.getText());
+        String sHeight = String.valueOf(mHeightMetricEditText.getText());
         String sWeight = String.valueOf(mWeihtEditText.getText());
 
         if (!(sHeight.isEmpty() || sWeight.isEmpty())) {
@@ -98,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
      * Save current values to preferences
      * */
     public void saveCurrentValsToPreferences(SharedPreferences sharedPreferences) {
-        String sHeight = String.valueOf(mHeightEditText.getText());
+        String sHeight = String.valueOf(mHeightMetricEditText.getText());
         String sWeight = String.valueOf(mWeihtEditText.getText());
         String sBmi = String.valueOf(mBmiTextView.getTag());
 
@@ -119,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         String bmi = sharedPreferences.getString(getString(R.string.pref_cur_bmi), "");
 
         if (!height.equals("")) {
-            mHeightEditText.setText(height);
+            mHeightMetricEditText.setText(height);
         }
 
         if (!weight.equals("")) {
@@ -132,7 +143,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        mHeightEditText.addTextChangedListener(new HeightWeightTextWatcher());
+        if (mHeightMetricEditText != null) {
+            mHeightMetricEditText.addTextChangedListener(new HeightWeightTextWatcher());
+        }
+
         mWeihtEditText.addTextChangedListener(new HeightWeightTextWatcher());
     }
 

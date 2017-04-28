@@ -51,7 +51,7 @@
         android:layout_below="@id/tvWeightLabel"
         android:inputType="numberDecimal"
         android:gravity="center"
-        android:hint="@string/height_hint"
+        android:hint="@string/height_hint_metric"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/secondaryText"
         android:textColorHint="@color/hint"
