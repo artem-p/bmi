@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setUpViews() {
-        createHeightWeightInputs(true);
+        createHeightWeightInputs(false);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
     }
 
