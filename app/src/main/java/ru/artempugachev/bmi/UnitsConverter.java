@@ -27,4 +27,13 @@ public class UnitsConverter {
         int ift = (int) ft;
         return ift;
     }
+
+    /**
+     * Convert centimeters to remaining inches from feet
+     * */
+    public int cmToRemainInches(int cm) {
+        // todo make with test
+        int ft = cmToIntFt(cm);
+
+    }
 }
