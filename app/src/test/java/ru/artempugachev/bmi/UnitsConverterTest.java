@@ -40,4 +40,16 @@ public class UnitsConverterTest {
         kg = mUnitsConverter.lbToKg(lb);
         assertEquals(0f, kg, EPSILON);
     }
+
+    @Test
+    public void cm_to_int_ft() {
+        int cm = 178;
+        int ft = mUnitsConverter.cmToIntFt(cm);
+
+        assertEquals(5, ft);
+
+        cm = 185;
+        ft = mUnitsConverter.cmToIntFt(cm);
+        assertEquals(6, ft);
+    }
 }
