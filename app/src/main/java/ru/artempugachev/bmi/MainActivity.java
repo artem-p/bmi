@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private  Toast CONVERSION_ERROR_TOAST;
 
+    private final boolean mIsMetric = false; // todo from preferences
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         setUpViews();
         setListeners();
-        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE));
-        updateBmi();
+        loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE), mIsMetric);
+//        updateBmi();
     }
 
 
     private void setUpViews() {
-        createHeightWeightInputs(false);
+        createHeightWeightInputs(mIsMetric);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
     }
 
@@ -136,22 +138,41 @@ public class MainActivity extends AppCompatActivity {
     /**
      * get current vals from preferences and display them
      * */
-    private void loadCurrentValsFromPreferences(SharedPreferences sharedPreferences) {
+    private void loadCurrentValsFromPreferences(SharedPreferences sharedPreferences, boolean isMetric) {
         String height = sharedPreferences.getString(getString(R.string.pref_cur_height), "");
         String weight = sharedPreferences.getString(getString(R.string.pref_cur_weight), "");
         String bmi = sharedPreferences.getString(getString(R.string.pref_cur_bmi), "");
 
-        if (!height.equals("")) {
-            mHeightMetricEditText.setText(height);
+        if (isMetric) {
+            if (!height.equals("")) {
+                mHeightMetricEditText.setText(height);
+            }
+
+            if (!weight.equals("")) {
+                mWeightEditText.setText(weight);
+            }
+
+        } else {
+            UnitsConverter unitsConverter = new UnitsConverter();
+
+            if (!height.equals("")) {
+                int heightFt = unitsConverter.cmToIntFt(Integer.parseInt(height));
+                int heightInch = unitsConverter.cmToRemainInches(Integer.parseInt(height));
+                mHeightImperialFeetEditText.setText(String.valueOf(heightFt));
+                mHeightImperialInchesEditText.setText(String.valueOf(heightInch));
+            }
+
+            if (!weight.equals("")) {
+                float weightPounds = unitsConverter.kgToLb(Float.parseFloat(weight));
+                mWeightEditText.setText(String.valueOf(weightPounds));
+            }
+
         }
 
-        if (!weight.equals("")) {
-            mWeightEditText.setText(weight);
-        }
-
-        if (!weight.equals("")) {
+        if (!bmi.equals("")) {
             mBmiTextView.setText(getString(R.string.bmi, bmi));
         }
+
     }
 
     private void setListeners() {
