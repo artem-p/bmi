@@ -32,8 +32,9 @@ public class UnitsConverter {
      * Convert centimeters to remaining inches from feet
      * */
     public int cmToRemainInches(int cm) {
-        // todo make with test
         int ft = cmToIntFt(cm);
-
+        int inches = Math.round (cm / (CM_IN_FT / 12));
+        int remainInches = inches - ft * 12;
+        return remainInches;
     }
 }

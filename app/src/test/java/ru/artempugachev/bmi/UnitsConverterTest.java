@@ -51,5 +51,36 @@ public class UnitsConverterTest {
         cm = 185;
         ft = mUnitsConverter.cmToIntFt(cm);
         assertEquals(6, ft);
+
+        cm = 182;
+        ft = mUnitsConverter.cmToIntFt(cm);
+        assertEquals(5, ft);
+    }
+
+    @Test
+    public void cmToRemainInches() {
+        int cm = 178;
+        int inches = mUnitsConverter.cmToRemainInches(cm);
+        assertEquals(10, inches);
+
+        cm = 182;
+        inches = mUnitsConverter.cmToRemainInches(cm);
+        assertEquals(12, inches);
+
+        cm = 183;
+        inches = mUnitsConverter.cmToRemainInches(cm);
+        assertEquals(0, inches);
+
+        cm = 184;
+        inches = mUnitsConverter.cmToRemainInches(cm);
+        assertEquals(0, inches);
+
+        cm = 185;
+        inches = mUnitsConverter.cmToRemainInches(cm);
+        assertEquals(1, inches);
+
+        cm = 176;
+        inches = mUnitsConverter.cmToRemainInches(cm);
+        assertEquals(9, inches);
     }
 }
