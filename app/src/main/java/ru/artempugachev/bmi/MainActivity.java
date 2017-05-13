@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setUpViews();
         setListeners();
         loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE), mIsMetric);
-//        updateBmi();
+        updateBmi();
     }
 
 
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
      * Get values from input fields and create Person object
      * */
     private Person buildPersonFromUi() {
+        // todo for imperial
         int height = 0;
         float weight = 0;
 
