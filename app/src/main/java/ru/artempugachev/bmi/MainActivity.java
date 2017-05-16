@@ -93,24 +93,47 @@ public class MainActivity extends AppCompatActivity {
      * Get values from input fields and create Person object
      * */
     private Person buildPersonFromUi() {
-        // todo for imperial
-        int height = 0;
-        float weight = 0;
+        int heightCm = 0;
+        float weightKg = 0;
+        String heightStr = "";
+        String weightStr = "";
 
-        String sHeight = String.valueOf(mHeightMetricEditText.getText());
-        String sWeight = String.valueOf(mWeightEditText.getText());
+        if (mIsMetric) {
+            heightStr = String.valueOf(mHeightMetricEditText.getText());
+            weightStr = String.valueOf(mWeightEditText.getText());
 
-        if (!(sHeight.isEmpty() || sWeight.isEmpty())) {
+            if (!(heightStr.isEmpty() || weightStr.isEmpty())) {
+                try {
+                    heightCm = Integer.parseInt(heightStr);
+                    weightKg = Float.parseFloat(weightStr);
+                } catch (Exception e) {
+                    CONVERSION_ERROR_TOAST.show();
+                    return null;
+                }
+            }
+        } else {
+            String feetStr = String.valueOf(mHeightImperialFeetEditText.getText());
+            String inchStr = String.valueOf(mHeightImperialInchesEditText.getText());
+            String lbStr = String.valueOf(mWeightEditText.getText());
+
+            int feet;
+            int inch;
+            float lb;
+
             try {
-                height = Integer.parseInt(sHeight);
-                weight = Float.parseFloat(sWeight);
+                feet = Integer.parseInt(feetStr);
+                inch = Integer.parseInt(inchStr);
+                lb = Float.parseFloat(lbStr);
+
+                UnitsConverter unitsConverter = new UnitsConverter();
+                // todo heightCm, weightKg
             } catch (Exception e) {
                 CONVERSION_ERROR_TOAST.show();
                 return null;
             }
         }
 
-        return new Person(height, weight);
+        return new Person(heightCm, weightKg);
     }
 
     @Override

@@ -37,4 +37,8 @@ public class UnitsConverter {
         int remainInches = inches - ft * 12;
         return remainInches;
     }
+
+    // todo feetToCm
+    // todo feetToInch
+
 }
