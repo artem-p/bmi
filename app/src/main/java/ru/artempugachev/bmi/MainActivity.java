@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private  Toast CONVERSION_ERROR_TOAST;
 
-    private final boolean mIsMetric = false; // todo from preferences
+    private final boolean mIsMetric = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
