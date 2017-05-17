@@ -38,7 +38,12 @@ public class UnitsConverter {
         return remainInches;
     }
 
-    // todo feetToCm
-    // todo feetToInch
+    public int feetToCm(int feet) {
+        return (int) (feet * CM_IN_FT);
+    }
+
+    public int inchToCm(int inch) {
+        return Math.round(inch * CM_IN_FT / 12);
+    }
 
 }

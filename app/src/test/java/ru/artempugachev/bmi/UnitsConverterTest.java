@@ -83,4 +83,24 @@ public class UnitsConverterTest {
         inches = mUnitsConverter.cmToRemainInches(cm);
         assertEquals(9, inches);
     }
+
+    @Test
+    public void testFeetToCm() {
+        int feet = 6;
+        int cm = 182;
+
+        assertEquals(cm, mUnitsConverter.feetToCm(feet));
+    }
+
+    @Test
+    public void inchToCm() {
+        int inch = 10;
+        int cm = 25;
+        assertEquals(cm, mUnitsConverter.inchToCm(inch));
+
+        inch = 11;
+        cm = 28;
+        assertEquals(cm, mUnitsConverter.inchToCm(inch));
+    }
+
 }
