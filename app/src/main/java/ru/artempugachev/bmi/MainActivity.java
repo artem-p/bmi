@@ -212,6 +212,14 @@ public class MainActivity extends AppCompatActivity {
             mHeightCmEditText.addTextChangedListener(new HeightWeightTextWatcher());
         }
 
+        if (mHeightFeetEditText != null) {
+            mHeightFeetEditText.addTextChangedListener(new HeightWeightTextWatcher());
+        }
+
+        if (mHeightInchesEditText != null) {
+            mHeightInchesEditText.addTextChangedListener(new HeightWeightTextWatcher());
+        }
+
         mWeightEditText.addTextChangedListener(new HeightWeightTextWatcher());
     }
 
