@@ -95,17 +95,16 @@ public class MainActivity extends AppCompatActivity {
     private Person buildPersonFromUi() {
         int heightCm = 0;
         float weightKg = 0;
-        String heightStr = "";
-        String weightStr = "";
+
 
         if (mIsMetric) {
-            heightStr = String.valueOf(mHeightCmEditText.getText());
-            weightStr = String.valueOf(mWeightEditText.getText());
+            String cmStr = String.valueOf(mHeightCmEditText.getText());
+            String kgStr = String.valueOf(mWeightEditText.getText());
 
-            if (!(heightStr.isEmpty() || weightStr.isEmpty())) {
+            if (!(cmStr.isEmpty() || kgStr.isEmpty())) {
                 try {
-                    heightCm = Integer.parseInt(heightStr);
-                    weightKg = Float.parseFloat(weightStr);
+                    heightCm = Integer.parseInt(cmStr);
+                    weightKg = Float.parseFloat(kgStr);
                 } catch (Exception e) {
                     CONVERSION_ERROR_TOAST.show();
                     return null;
@@ -120,17 +119,20 @@ public class MainActivity extends AppCompatActivity {
             int inch;
             float lb;
 
-            try {
-                feet = Integer.parseInt(feetStr);
-                inch = Integer.parseInt(inchStr);
-                lb = Float.parseFloat(lbStr);
+            if (!(feetStr.isEmpty() || inchStr.isEmpty() || lbStr.isEmpty())) {
 
-                UnitsConverter unitsConverter = new UnitsConverter();
-                heightCm = unitsConverter.feetToCm(feet) + unitsConverter.inchToCm(inch);
-                weightKg = unitsConverter.lbToKg(lb);
-            } catch (Exception e) {
-                CONVERSION_ERROR_TOAST.show();
-                return null;
+                try {
+                    feet = Integer.parseInt(feetStr);
+                    inch = Integer.parseInt(inchStr);
+                    lb = Float.parseFloat(lbStr);
+
+                    UnitsConverter unitsConverter = new UnitsConverter();
+                    heightCm = unitsConverter.feetToCm(feet) + unitsConverter.inchToCm(inch);
+                    weightKg = unitsConverter.lbToKg(lb);
+                } catch (Exception e) {
+                    CONVERSION_ERROR_TOAST.show();
+                    return null;
+                }
             }
         }
 
