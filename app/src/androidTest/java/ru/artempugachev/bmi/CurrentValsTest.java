@@ -54,8 +54,8 @@ public class CurrentValsTest {
         SharedPreferences preferences = mainActivity.getPreferences(Context.MODE_PRIVATE);
         mainActivity.saveCurrentValsToPreferences(preferences);
 
-        String height = preferences.getString(mainActivity.getString(R.string.pref_cur_height), "");
-        String weight = preferences.getString(mainActivity.getString(R.string.pref_cur_weight), "");
+        String height = preferences.getString(mainActivity.getString(R.string.pref_height_cm), "");
+        String weight = preferences.getString(mainActivity.getString(R.string.pref_weight_kg), "");
         String bmi = preferences.getString(mainActivity.getString(R.string.pref_cur_bmi), "");
 
         assertEquals("178", height);

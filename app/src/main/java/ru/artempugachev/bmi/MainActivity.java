@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
                 lb = Float.parseFloat(lbStr);
 
                 UnitsConverter unitsConverter = new UnitsConverter();
-                // todo heightCm, weightKg
+                heightCm = unitsConverter.feetToCm(feet) + unitsConverter.inchToCm(inch);
+                weightKg = unitsConverter.lbToKg(lb);
             } catch (Exception e) {
                 CONVERSION_ERROR_TOAST.show();
                 return null;
@@ -152,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
         String sBmi = String.valueOf(mBmiTextView.getTag());
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(getString(R.string.pref_cur_height), sHeight);
-        editor.putString(getString(R.string.pref_cur_weight), sWeight);
+        editor.putString(getString(R.string.pref_height_cm), sHeight);
+        editor.putString(getString(R.string.pref_weight_kg), sWeight);
         editor.putString(getString(R.string.pref_cur_bmi), sBmi);
         editor.apply();
     }
@@ -163,40 +164,32 @@ public class MainActivity extends AppCompatActivity {
      * get current vals from preferences and display them
      * */
     private void loadCurrentValsFromPreferences(SharedPreferences sharedPreferences, boolean isMetric) {
-        String height = sharedPreferences.getString(getString(R.string.pref_cur_height), "");
-        String weight = sharedPreferences.getString(getString(R.string.pref_cur_weight), "");
-        String bmi = sharedPreferences.getString(getString(R.string.pref_cur_bmi), "");
-
         if (isMetric) {
-            if (!height.equals("")) {
-                mHeightMetricEditText.setText(height);
+            String heightCm = sharedPreferences.getString(getString(R.string.pref_height_cm), "");
+            String weightKg = sharedPreferences.getString(getString(R.string.pref_weight_kg), "");
+
+            if (!heightCm.equals("")) {
+                mHeightMetricEditText.setText(heightCm);
             }
 
-            if (!weight.equals("")) {
-                mWeightEditText.setText(weight);
+            if (!weightKg.equals("")) {
+                mWeightEditText.setText(weightKg);
             }
 
         } else {
-            UnitsConverter unitsConverter = new UnitsConverter();
+            String heightFeet = sharedPreferences.getString(getString(R.string.pref_height_feet), "");
+            String heightInch = sharedPreferences.getString(getString(R.string.pref_height_inch), "");
+            String weightLb = sharedPreferences.getString(getString(R.string.pref_weight_lb), "");
 
-            if (!height.equals("")) {
-                int heightFt = unitsConverter.cmToIntFt(Integer.parseInt(height));
-                int heightInch = unitsConverter.cmToRemainInches(Integer.parseInt(height));
-                mHeightImperialFeetEditText.setText(String.valueOf(heightFt));
-                mHeightImperialInchesEditText.setText(String.valueOf(heightInch));
-            }
-
-            if (!weight.equals("")) {
-                float weightPounds = unitsConverter.kgToLb(Float.parseFloat(weight));
-                mWeightEditText.setText(String.valueOf(weightPounds));
-            }
-
+            mHeightImperialFeetEditText.setText(heightFeet);
+            mHeightImperialInchesEditText.setText(heightInch);
+            mWeightEditText.setText(weightLb);
         }
 
+        String bmi = sharedPreferences.getString(getString(R.string.pref_cur_bmi), "");
         if (!bmi.equals("")) {
             mBmiTextView.setText(getString(R.string.bmi, bmi));
         }
-
     }
 
     private void setListeners() {

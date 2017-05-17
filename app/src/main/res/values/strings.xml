@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Bmi</string>
     <string name="height_label">Height</string>
     <string name="weight_label">Weight</string>
@@ -9,12 +9,15 @@
     <string name="weight_hint_imperial">lb</string>
     <string name="bmi">BMI = %s</string>
     <string name="conversion_error">Conversion error</string>
-    <string name="pref_cur_height" translatable="false">pref_cur_height</string>
-    <string name="pref_cur_weight" translatable="false">pref_cur_weight</string>
+    <string name="pref_height_cm" translatable="false">pref_height_cm</string>
+    <string name="pref_weight_kg" translatable="false">pref_weight_inch</string>
     <string name="pref_cur_bmi" translatable="false">pref_cur_bmi</string>
     <string name="height_units_metric">cm</string>
     <string name="weight_units_metric">kg</string>
     <string name="height_units_imperial_feets">feet</string>
     <string name="heigt_units_imperial_inches">inches</string>
     <string name="weight_units_imperial">pounds</string>
+    <string name="pref_height_feet" translatable="false">pref_height_feet</string>
+    <string name="pref_height_inch" translatable="false">pref_height_inch</string>
+    <string name="pref_weight_lb" translatable="false">pref_weight_lb</string>
 </resources>
