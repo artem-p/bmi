@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private EditText mHeightCmEditText;
     private EditText mHeightFeetEditText;
     private EditText mHeightInchesEditText;
@@ -37,14 +37,17 @@ public class MainActivity extends AppCompatActivity {
         CONVERSION_ERROR_TOAST = Toast.makeText(MainActivity.this,
                 R.string.conversion_error, Toast.LENGTH_SHORT);
 
-        mIsMetric = isMetric();
         setUpViews();
+
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+
         loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE), mIsMetric);
         updateBmi();
     }
 
 
     private void setUpViews() {
+        mIsMetric = isMetric();
         createHeightWeightInputs(mIsMetric);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
         setListeners();
@@ -85,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
         FrameLayout heightInputContainer = (FrameLayout) findViewById(R.id.heightInputContainer);
         FrameLayout weightInputContainer = (FrameLayout) findViewById(R.id.weightInputContainer);
+
+        heightInputContainer.removeAllViews();
+        weightInputContainer.removeAllViews();
 
         if (isMetric) {
             heightInputContainer.addView(heightInputMetric);
@@ -249,6 +255,14 @@ public class MainActivity extends AppCompatActivity {
         mWeightEditText.addTextChangedListener(new HeightWeightTextWatcher());
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_units_key))) {
+            // we need another layout for imperial units, so recreate views
+            setUpViews();
+        }
+    }
+
 
     private class HeightWeightTextWatcher implements TextWatcher {
 
@@ -286,5 +300,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 }
