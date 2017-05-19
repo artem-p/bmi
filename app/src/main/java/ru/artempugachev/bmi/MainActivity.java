@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private  Toast CONVERSION_ERROR_TOAST;
 
-    private final boolean mIsMetric = false;
+    private final boolean mIsMetric = getResources().getBoolean(R.bool.isMetricDefault);
 
 
     @Override
