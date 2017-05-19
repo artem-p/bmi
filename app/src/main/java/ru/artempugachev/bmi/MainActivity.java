@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         mIsMetric = isMetric();
         setUpViews();
-        setListeners();
         loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE), mIsMetric);
         updateBmi();
     }
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUpViews() {
         createHeightWeightInputs(mIsMetric);
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
+        setListeners();
     }
 
 
