@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -49,6 +50,29 @@ public class MainActivity extends AppCompatActivity {
         mBmiTextView = (TextView) findViewById(R.id.tvBmi);
     }
 
+
+    /**
+     * Check if metric or imperial units
+     * Read it from preferences
+     * In prefs we store strings, so transform it to boolean, true if metric
+     * */
+    private boolean isMetric() {
+        // todo 2 test
+        boolean isMetric = getResources().getBoolean(R.bool.isMetricDefault);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String unitsStr = sharedPreferences.getString(getString(R.string.pref_units_key),
+                getString(R.string.pref_units_value_metric));
+
+        if (unitsStr.equals(getString(R.string.pref_units_value_metric))) {
+            isMetric = true;
+        } else {
+            isMetric = false;
+        }
+
+        return isMetric;
+    }
+
+    // todo 1 onSharedPreferencesChangedListener
 
     /**
      * Create views for height and weight inputs
