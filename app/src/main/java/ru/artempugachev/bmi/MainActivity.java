@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         CONVERSION_ERROR_TOAST = Toast.makeText(MainActivity.this,
                 R.string.conversion_error, Toast.LENGTH_SHORT);
 
-        mIsMetric = getResources().getBoolean(R.bool.isMetricDefault);
+        mIsMetric = isMetric();
         setUpViews();
         setListeners();
         loadCurrentValsFromPreferences(getPreferences(Context.MODE_PRIVATE), mIsMetric);
@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
      * In prefs we store strings, so transform it to boolean, true if metric
      * */
     private boolean isMetric() {
-        // todo 2 test
-        boolean isMetric = getResources().getBoolean(R.bool.isMetricDefault);
+        boolean isMetric;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String unitsStr = sharedPreferences.getString(getString(R.string.pref_units_key),
                 getString(R.string.pref_units_value_metric));
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         return isMetric;
     }
 
-    // todo 1 onSharedPreferencesChangedListener
 
     /**
      * Create views for height and weight inputs
