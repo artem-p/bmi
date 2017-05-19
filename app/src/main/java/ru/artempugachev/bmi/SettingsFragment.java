@@ -1,4 +1,4 @@
-package ru.artempugachev;
+package ru.artempugachev.bmi;
 
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
